@@ -21,7 +21,6 @@ export function BookIndex() {
         console.log('Problems getting books:', err)
       })
   }
-  //
   function onRemoveBook(bookId) {
     bookService
       .remove(bookId)
