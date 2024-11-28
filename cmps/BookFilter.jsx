@@ -25,31 +25,23 @@ export function BookFilter({ defaultFilter, onSetFilter }) {
     setFilterByToEdit((prevFilter) => ({ ...prevFilter, [field]: value }))
   }
 
-  // function handleTxtChange(ev) {
-  //     setFilterByToEdit(filter => ({ ...filter, txt: ev.target.value }))
-  // }
-
-  // function handleMinSpeedChange(ev) {
-  //     setFilterByToEdit(filter => ({ ...filter, minSpeed: +ev.target.value }))
-  // }
-
   function onSubmitFilter(ev) {
     ev.preventDefault()
     onSetFilter(filterByToEdit)
   }
 
-  const { txt, minSpeed } = filterByToEdit
+  const { title, minSpeed } = filterByToEdit
   return (
     <section className='book-filter'>
       <h2>Filter Our Books</h2>
       <form onSubmit={onSubmitFilter}>
-        <label htmlFor='txt'>Vendor</label>
+        <label htmlFor='title'>Book Title</label>
         <input
-          value={txt}
+          value={title}
           onChange={handleChange}
           type='text'
-          name='txt'
-          id='txt'
+          name='title'
+          id='title'
         />
 
         <label htmlFor='minSpeed'>Min Speed</label>
