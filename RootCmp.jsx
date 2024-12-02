@@ -3,7 +3,7 @@ import { Home } from './pages/Home.jsx'
 import { NotFound } from './pages/NotFound.jsx'
 import { AboutUs } from './pages/AboutUs.jsx'
 import { BookIndex } from './pages/BookIndex.jsx'
-import { BookDetails } from './pages/CarDetails.jsx'
+import { BookDetails } from './pages/BookDetails.jsx'
 const Router = ReactRouterDOM.HashRouter
 const { Routes, Route, Navigate } = ReactRouterDOM
 

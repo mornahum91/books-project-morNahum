@@ -26,7 +26,14 @@ export function BookDetails() {
     // navigate(-1)
   }
 
+  function getBookDifficulty(pages) {
+    if (pages > 500) return 'Serious Reading'
+    else if (pages > 200) return 'Descent Reading'
+    else if (pages < 100) return 'Light Reading'
+  }
+
   if (!book) return <div>Details Loading...</div>
+
   return (
     <section className='book-details'>
       <h1>Book Titile: {book.title}</h1>
@@ -34,11 +41,12 @@ export function BookDetails() {
         Price: {book.listPrice.amount} {book.listPrice.currencyCode}
       </h1>
       <p>{book.description}</p>
-      <img
+      <h4>{getBookDifficulty(book.pageCount)}</h4>
+      {/* <img
         src={`../assets/img/${book.title.replace(/\s/g, '')}.jpg`}
         alt='book-image'
         width='400px'
-      />
+      /> */}
       <button onClick={onBack}>Back</button>
       <section>
         <button>
