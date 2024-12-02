@@ -1,9 +1,9 @@
-import { AppHeader } from './pages/AppHeader.jsx'
+import { AppHeader } from './cmps/AppHeader.jsx'
 import { Home } from './pages/Home.jsx'
 import { NotFound } from './pages/NotFound.jsx'
 import { AboutUs } from './pages/AboutUs.jsx'
 import { BookIndex } from './pages/BookIndex.jsx'
-
+import { BookDetails } from './pages/CarDetails.jsx'
 const Router = ReactRouterDOM.HashRouter
 const { Routes, Route, Navigate } = ReactRouterDOM
 
@@ -18,6 +18,8 @@ export function App() {
             <Route path='/home' element={<Home />} />
             <Route path='/about' element={<AboutUs />} />
             <Route path='/book' element={<BookIndex />} />
+            <Route path='/book/:bookId' element={<BookDetails />} />
+            {/* <Route path='/book/edit' element={<BookEdit />} /> */}
 
             <Route path='*' element={<NotFound />} />
           </Routes>

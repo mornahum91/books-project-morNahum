@@ -23,8 +23,12 @@ function query(filterBy = {}) {
       books = books.filter((book) => regExp.test(book.title))
     }
 
-    if (filterBy.minSpeed) {
-      books = books.filter((book) => book.maxSpeed >= filterBy.minSpeed)
+    if (filterBy.isOnSale) {
+      books = books.filter((book) => book.isOnSale)
+    }
+
+    if (filterBy.amount) {
+      books = books.filter((book) => filterBy.amount >= book.amount)
     }
 
     return books
@@ -51,8 +55,14 @@ function getEmptyBook(title = '', description = '', listPrice = '') {
   return { title, description, ...listPrice }
 }
 
-function getDefaultFilter(filterBy = { title: '', description: 0 }) {
-  return { title: filterBy.title, description: filterBy.description }
+function getDefaultFilter(
+  filterBy = { title: '', description: '', amount: 200 },
+) {
+  return {
+    title: filterBy.title,
+    description: filterBy.description,
+    amount: filterBy.amount,
+  }
 }
 
 function _createBooks() {
@@ -63,7 +73,7 @@ function _createBooks() {
     const demoBooksData = [
       {
         id: 'A1bC2dE3F4g',
-        title: 'The Hidden Garden',
+        title: 'Grow Your Mind',
         description:
           'A captivating story about a secret garden that holds many mysteries and wonders.',
         thumbnail: 'http://ca.org/books-photos/21.jpg',
@@ -75,7 +85,7 @@ function _createBooks() {
       },
       {
         id: 'H5I6jK7Lm8N',
-        title: 'Whispers of the Night',
+        title: 'Harry Potter',
         description:
           'An enchanting tale of adventure and mystery that unfolds under the cover of darkness.',
         thumbnail: 'http://ca.org/books-photos/22.jpg',
@@ -87,7 +97,7 @@ function _createBooks() {
       },
       {
         id: 'O9P0Qr1St2U',
-        title: 'Journey Through Time',
+        title: 'The Secret',
         description:
           'A gripping narrative that takes readers on an extraordinary journey across different eras.',
         thumbnail: 'http://ca.org/books-photos/23.jpg',
@@ -99,8 +109,6 @@ function _createBooks() {
       },
     ]
     for (let i = 0; i < 3; i++) {
-      // const bookTitle =
-      //   title[utilService.getRandomIntInclusive(0, title.length - 1)]
       books.push(
         _createBook(
           demoBooksData[i],
