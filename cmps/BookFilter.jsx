@@ -50,7 +50,7 @@ export function BookFilter({ defaultFilter, onSetFilter }) {
           onChange={handleChange}
           type='range'
           min='1'
-          max='300'
+          max='500'
           name='amount'
           id='amount'
         />

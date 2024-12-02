@@ -26,20 +26,14 @@ export function BookDetails() {
     // navigate(-1)
   }
 
-  // console.log('book:', book)
-  // console.log('Render');
-
   if (!book) return <div>Details Loading...</div>
   return (
     <section className='book-details'>
       <h1>Book Titile: {book.title}</h1>
-      <h1>Price: {book.amount}</h1>
-      <p>
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Facilis quae
-        fuga eveniet, quisquam ducimus modi optio in alias accusantium corrupti
-        veritatis commodi tenetur voluptate deserunt nihil quibusdam. Expedita,
-        architecto omnis?
-      </p>
+      <h1>
+        Price: {book.listPrice.amount} {book.listPrice.currencyCode}
+      </h1>
+      <p>{book.description}</p>
       <img
         src={`../assets/img/${book.title.replace(/\s/g, '')}.jpg`}
         alt='book-image'
