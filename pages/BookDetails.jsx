@@ -1,4 +1,5 @@
 import { bookService } from '../services/book.service.js'
+import { LongTxt } from '../cmps/LongTxt.jsx'
 
 const { useEffect, useState } = React
 const { useParams, useNavigate, Link } = ReactRouterDOM
@@ -32,16 +33,38 @@ export function BookDetails() {
     else if (pages < 100) return 'Light Reading'
   }
 
+  function classifyPublication(publishedDate) {
+    const diff = new Date().getFullYear() - publishedDate
+    if (diff > 10) return 'Vintage'
+    else if (diff < 1) return 'New'
+  }
   if (!book) return <div>Details Loading...</div>
+
+  function getPriceClass(amount) {
+    let priceClass = 'default' // Default class
+
+    if (amount > 150) {
+      priceClass = 'red'
+    } else if (amount < 20) {
+      priceClass = 'green'
+    }
+    return priceClass
+  }
 
   return (
     <section className='book-details'>
       <h1>Book Titile: {book.title}</h1>
       <h1>
-        Price: {book.listPrice.amount} {book.listPrice.currencyCode}
+        Price:
+        <p className={getPriceClass(book.listPrice.amount)}>
+          {book.listPrice.amount} {book.listPrice.currencyCode}
+        </p>
       </h1>
-      <p>{book.description}</p>
+      <LongTxt txt={book.description} />
+      {/* <p>{book.description}</p> */}
       <h4>{getBookDifficulty(book.pageCount)}</h4>
+      <h4>{classifyPublication(book.publishedDate)}</h4>
+
       {/* <img
         src={`../assets/img/${book.title.replace(/\s/g, '')}.jpg`}
         alt='book-image'

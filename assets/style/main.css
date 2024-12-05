@@ -209,3 +209,15 @@ a.active {
 .book-preview img {
   transform: rotate(-15deg);
 }
+
+.red {
+  color: red;
+}
+
+.green {
+  color: green;
+}
+
+.default {
+  color: black;
+}

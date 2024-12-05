@@ -34,6 +34,7 @@ export function BookIndex() {
   }
 
   function onSetFilter(filterBy) {
+    console.log('hello')
     setFilterBy((prevFilter) => ({ ...prevFilter, ...filterBy }))
   }
 
@@ -41,9 +42,9 @@ export function BookIndex() {
   return (
     <section className='book-index'>
       <BookFilter defaultFilter={filterBy} onSetFilter={onSetFilter} />
-      <section>
+      {/* <section>
         <Link to='/book/edit'>Add Book</Link>
-      </section>
+      </section> */}
 
       <BookList books={books} onRemoveBook={onRemoveBook} />
     </section>

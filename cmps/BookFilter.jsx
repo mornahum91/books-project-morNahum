@@ -64,7 +64,7 @@ export function BookFilter({ defaultFilter, onSetFilter }) {
           id='isOnSale'
         />
 
-        <button>Submit</button>
+        {/* <button>Submit</button> */}
       </form>
     </section>
   )
