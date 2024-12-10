@@ -1,34 +1,27 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
-
 /* Vars */
 :root {
   --clr1: rgb(34, 40, 49);
   --clr2: rgb(100, 149, 237);
-
   --clr1bg: rgb(57, 62, 70);
   --clr1bg-light: rgb(238, 238, 238);
   --clr2bg: rgb(173, 216, 230);
   --clr2bg-light: rgb(240, 248, 255);
-
   --gray1: rgb(248, 248, 248);
   --gray2: rgb(169, 169, 169);
   --gray3: rgb(28, 28, 28);
 }
-
 /* Base */
-
 * {
   box-sizing: border-box;
 }
-
 body {
   margin: 0;
   color: var(--gray3);
   font-family: 'Poppins', sans-serif;
   background-color: var(--clr1bg-light);
 }
-
 h1,
 h2,
 h3,
@@ -38,34 +31,28 @@ h6 {
   margin: 0.5em 0 0.5em;
   font-family: 'Poppins', sans-serif;
 }
-
 p {
   margin: 0 0 1em;
 }
-
 a {
   text-decoration: none;
   color: var(--clr2);
   cursor: pointer;
 }
-
-/* Don't stretch my Media */
+/* Don’t stretch my Media */
 img,
 embed,
 video,
 object {
   max-width: 100%;
 }
-
 /* Simple and useful CSS Debugging Technique */
 .debug * {
   outline: 1px solid gold;
 }
-
 .about nav a {
   margin-right: 10px;
 }
-
 button {
   cursor: pointer;
   background-color: var(--clr2bg);
@@ -76,148 +63,167 @@ button {
   font-family: 'Poppins', sans-serif;
   font-weight: 600;
 }
-
 button:hover {
   background-color: var(--clr2);
   color: white;
   transition: 0.3s;
 }
-
 input:focus {
   background-color: var(--clr1bg);
   transition: background-color 1s;
 }
-
 /* Helpers */
-
 /* flex helpers */
-
 .flex {
   display: flex;
 }
-
 .flex.flex-column {
   flex-direction: column;
 }
-
 .flex.justify-center {
   justify-content: center;
 }
-
 .flex.justify-between {
   justify-content: space-between;
 }
-
 .flex.align-center {
   align-items: center;
 }
-
 /* text helpers */
-
 .colored-text {
   color: var(--clr1);
 }
-
 /* list helpers */
-
 .clean-list {
   padding: 0;
   margin: 0;
   list-style-type: none;
 }
-
 /* font awesome */
-
 .fa {
   font-family: fa;
 }
-
 .fa.fa-facebook::before {
   content: '\f39e';
 }
-
 .fa.fa-twitter::before {
   content: '\f099';
 }
-
 .fa.fa-dribbble::before {
   content: '\f17d';
 }
-
 .fa.fa-behance::before {
   content: '\f1b4';
 }
-
 /* Layout */
 .main-layout {
   display: grid;
   grid-template-columns: 1.6rem 1fr 1.6rem;
 }
-
 .main-layout > * {
   grid-column: 2;
 }
-
 .main-layout .full {
   grid-column: 1/-1;
 }
-
 .container {
   max-width: 800px;
   padding: 1em;
   margin: auto;
 }
-
 /* Components */
-
 .home {
   font-size: 1em;
 }
-
 .app-header {
   background-color: var(--clr1);
   color: var(--clr2bg-light);
   padding: 1em 0;
 }
-
 .header-container {
   display: flex;
   align-items: center;
 }
-
 .header-container h1 {
   flex-grow: 1;
 }
-
 .app-nav {
   display: flex;
   gap: 15px;
 }
-
 a.active {
   color: rgb(241, 212, 241);
   font-weight: 600;
   text-decoration: underline;
 }
-
 @media (max-width: 720px) {
   .app-header {
     color: var(--clr2bg-light);
   }
 }
-
 .book-preview img {
   transform: rotate(-15deg);
 }
-
 .red {
   color: red;
 }
-
 .green {
   color: green;
 }
-
 .default {
   color: black;
+}
+.user-msg {
+  position: fixed;
+  top: 0.5rem;
+  right: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  padding: 0.75rem 0.5rem 0rem;
+  margin: 0.5rem;
+  min-width: 100px;
+  max-width: 350px;
+  border-radius: 0.5rem;
+  background-color: #f1f1f1;
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
+  animation: slideIn 0.3s ease-in-out;
+  text-align: center;
+}
+.user-msg.success {
+  background-color: #d4edda;
+  color: #155724;
+}
+.user-msg.error {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+.user-msg h4 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  padding-inline: 0.5rem;
+}
+.user-msg h4 > p {
+  margin: 0;
+}
+.user-msg button {
+  background-color: hsl(0 0% 100%/0.35);
+  border: none;
+  cursor: pointer;
+  font-size: 0.8rem;
+  width: fit-content;
+  aspect-ratio: 1;
+  align-self: end;
+  color: inherit;
+  border-radius: 50%;
+  margin-top: 0.5rem;
+  margin-right: 0;
+}
+.user-msg button:hover {
+  background-color: hsl(0 0% 100%/0.55);
+}
+
+.item-preview {
+  margin: 10px;
+  border-style: groove;
+  background-color: lightgray;
 }

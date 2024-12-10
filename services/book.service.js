@@ -17,9 +17,6 @@ export const bookService = {
 
 function query(filterBy = {}) {
   return storageService.query(BOOK_KEY).then((books) => {
-    console.log(filterBy)
-    console.log(books)
-
     if (filterBy.title) {
       const regExp = new RegExp(filterBy.title, 'i')
       books = books.filter((book) => regExp.test(book.title))

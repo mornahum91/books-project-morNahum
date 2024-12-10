@@ -1,17 +1,23 @@
 import { bookService } from '../services/book.service.js'
 import { LongTxt } from '../cmps/LongTxt.jsx'
+import { AddReview } from '../cmps/AddReview.jsx'
+import { reviewService } from '../services/review.service.js'
+import { ReviewPreview } from '../cmps/ReviewPreview.jsx'
 
 const { useEffect, useState } = React
 const { useParams, useNavigate, Link } = ReactRouterDOM
 
 export function BookDetails() {
   const [book, setBook] = useState(null)
+  const [reviews, setReviews] = useState([])
   const params = useParams()
   const navigate = useNavigate()
 
   useEffect(() => {
-    loadBook()
-  }, [params.bookId])
+    const bookid = params.bookid // Always use params.bookid
+    loadBook(bookid)
+    loadReviews(bookid)
+  }, [params.bookid])
 
   function loadBook() {
     bookService
@@ -20,6 +26,18 @@ export function BookDetails() {
       .catch((err) => {
         console.log('Problem getting book', err)
       })
+  }
+
+  function loadReviews(bookid) {
+    reviewService.query(bookid).then(setReviews) // Use params.bookid
+    console.log('reviews:' + reviews)
+  }
+
+  function addToReviews(review) {
+    reviewService.post(review).then(() => {
+      setReviews((prev) => [...prev, review])
+      console.log(review)
+    })
   }
 
   function onBack() {
@@ -64,12 +82,6 @@ export function BookDetails() {
       {/* <p>{book.description}</p> */}
       <h4>{getBookDifficulty(book.pageCount)}</h4>
       <h4>{classifyPublication(book.publishedDate)}</h4>
-
-      {/* <img
-        src={`../assets/img/${book.title.replace(/\s/g, '')}.jpg`}
-        alt='book-image'
-        width='400px'
-      /> */}
       <button onClick={onBack}>Back</button>
       <section>
         <button>
@@ -79,6 +91,9 @@ export function BookDetails() {
           <Link to={`/book/${book.nextBookId}`}>Next Book</Link>
         </button>
       </section>
+
+      <AddReview addToReviews={addToReviews} bookId={params.bookid} />
+      <ReviewPreview reviews={reviews} />
     </section>
   )
 }
